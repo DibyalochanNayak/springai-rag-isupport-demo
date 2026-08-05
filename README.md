@@ -12,7 +12,27 @@ Using an Advanced RAG pipeline, iSupport retrieves the most relevant context fro
 
 ## Architecture
 
-┌────────────────────────────────────────────────────────────┐ │ PDF │ Confluence │ SharePoint │ Help Center │ Any Web │ └───────────────────────┬────────────────────────────────────┘ │ ▼ ┌────────────────────────────────────────────────────────────┐ │ Document Readers │ │ (Strategy Pattern) │ └───────────────────────┬────────────────────────────────────┘ │ ▼ ┌────────────────────────────────────────────────────────────┐ │ Generic Ingestion Pipeline │ │ Spring AI Documents → SHA-256 → Chunk → Embed → Persist │ │ Template Method • SRP • Content-based Deduplication │ └───────────────────────┬────────────────────────────────────┘ │ ▼ Vector Store + Unified Metadata Repository
+```text
+┌────────────────────────────────────────────────────────────┐
+│ PDF │ Confluence │ SharePoint │ Help Center │ Any Web      │
+└───────────────────────┬────────────────────────────────────┘
+                        │
+                        ▼
+┌────────────────────────────────────────────────────────────┐
+│ Document Readers | Web Page Reader                         │
+│ (Strategy Pattern)                                         │
+└───────────────────────┬────────────────────────────────────┘
+                        │
+                        ▼
+┌────────────────────────────────────────────────────────────┐
+│ Generic Ingestion Pipeline                                 │
+│ Spring AI Documents → SHA-256 → Chunk → Embed → Persist    │
+│ Template Method  • Content-based Deduplication        │
+└───────────────────────┬────────────────────────────────────┘
+                        │
+                        ▼
+         Vector Store + Unified Metadata Repository
+```
 
 
 
